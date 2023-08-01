@@ -7,8 +7,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{FC7C6F41-B09
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessRUsAssessment", "src\ProcessRUsAssessment\ProcessRUsAssessment.csproj", "{EB6153C1-D37A-4411-B440-828644EC343D}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CSharp_Challenge", "CSharp_Challenge", "{FE572176-1E29-4723-92C2-5653A34790F9}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

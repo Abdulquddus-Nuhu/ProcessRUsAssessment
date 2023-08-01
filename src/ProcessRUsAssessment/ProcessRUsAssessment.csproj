@@ -29,18 +29,20 @@
 
   <ItemGroup>
     <None Remove="Identity\" />
-    <None Remove="Constants\" />
     <None Remove="Data\" />
     <None Remove="Services\" />
     <None Remove="Models\" />
     <None Remove="Models\Enums\" />
+    <None Remove="CSharp_Challenge\" />
+    <None Remove="Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Identity\" />
-    <Folder Include="Constants\" />
     <Folder Include="Data\" />
     <Folder Include="Services\" />
     <Folder Include="Models\" />
     <Folder Include="Models\Enums\" />
+    <Folder Include="CSharp_Challenge\" />
+    <Folder Include="Shared\" />
   </ItemGroup>
 </Project>
