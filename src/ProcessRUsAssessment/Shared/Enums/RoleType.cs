@@ -1,5 +1,5 @@
 ﻿using System;
-namespace ProcessRUsAssessment.Models.Enums
+namespace ProcessRUsAssessment.Shared.Enums
 {
     public enum RoleType
     {

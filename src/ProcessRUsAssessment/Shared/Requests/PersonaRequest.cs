@@ -1,9 +1,8 @@
 ﻿using System;
-using ProcessRUsAssessment.Constants;
+using ProcessRUsAssessment.Shared.Enums;
 using System.ComponentModel.DataAnnotations;
-using ProcessRUsAssessment.Models.Enums;
 
-namespace ProcessRUsAssessment.Models
+namespace ProcessRUsAssessment.Shared.Requests
 {
     public class PersonaRequest
     {
@@ -27,5 +26,6 @@ namespace ProcessRUsAssessment.Models
         [StringLength(255)]
         public string ConfirmPassword { get; set; } = string.Empty;
     }
+
 }
 
