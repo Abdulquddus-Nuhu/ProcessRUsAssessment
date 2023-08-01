@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{FC7C6F41-B094-471E-8AEB-1F6836F5507B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessRUsAssessment", "src\ProcessRUsAssessment\ProcessRUsAssessment.csproj", "{EB6153C1-D37A-4411-B440-828644EC343D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EB6153C1-D37A-4411-B440-828644EC343D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB6153C1-D37A-4411-B440-828644EC343D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB6153C1-D37A-4411-B440-828644EC343D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB6153C1-D37A-4411-B440-828644EC343D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EB6153C1-D37A-4411-B440-828644EC343D} = {FC7C6F41-B094-471E-8AEB-1F6836F5507B}
+	EndGlobalSection
+EndGlobal
