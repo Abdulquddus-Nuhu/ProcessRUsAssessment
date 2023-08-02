@@ -1,8 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using ProcessRUsAssessment;
 using ProcessRUsAssessment.Data;
+using ProcessRUsAssessment.Identity;
+using ProcessRUsAssessment.Services;
 using static ProcessRUsAssessment.Constants.StringConstants;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -65,6 +68,21 @@ builder.Services.AddAuthentication(options =>
 //    x.AddPolicy(Roles.BACKOFFICE, policy => policy.RequireRole(Roles.BACKOFFICE));
 //    x.AddPolicy(Roles.FRONTOFFICE, policy => policy.RequireRole(Roles.FRONTOFFICE));
 //});
+
+builder.Services.AddIdentity<Persona, Role>(
+    options =>
+    {
+        options.Password.RequireDigit = true;
+        options.Password.RequireLowercase = true;
+        options.Password.RequireNonAlphanumeric = true;
+        options.Password.RequireUppercase = true;
+        options.Password.RequiredLength = 8;
+        options.User.RequireUniqueEmail = true;
+    })
+    .AddEntityFrameworkStores<AppDbContext>()
+    .AddDefaultTokenProviders();
+
+builder.Services.AddTransient<FruitsRepository>();
 
 //Seed databse
 builder.Services.AddHostedService<DBSeed>();

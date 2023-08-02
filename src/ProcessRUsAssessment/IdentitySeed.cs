@@ -5,7 +5,7 @@ using static ProcessRUsAssessment.Constants.StringConstants;
 
 namespace ProcessRUsAssessment
 {
-    public class IdentitySeed
+    public static class IdentitySeed
     {
         public static async Task SeedAsync(UserManager<Persona>? userManager, RoleManager<Role>? roleManager)
         {
