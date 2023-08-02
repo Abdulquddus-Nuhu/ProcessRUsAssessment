@@ -5,6 +5,7 @@ using System.Net.Mime;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.OAuth;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ProcessRUsAssessment.Services;
 using ProcessRUsAssessment.Shared.Requests;
@@ -24,6 +25,7 @@ namespace ProcessRUsAssessment.Controllers
             _authService = authService;
         }
 
+        [AllowAnonymous]
         [SwaggerOperation(
         Summary = "Authenticates a user and generate JWT Token endpoint",
         Description = "Authenticates a user and generate JWT Token",

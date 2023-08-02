@@ -1,11 +1,14 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using ProcessRUsAssessment;
 using ProcessRUsAssessment.Data;
 using ProcessRUsAssessment.Identity;
 using ProcessRUsAssessment.Services;
+using static ProcessRUsAssessment.Constants.StringConstants;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
@@ -47,20 +50,32 @@ builder.Services.AddSwaggerGen(x =>
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
 })
 .AddJwtBearer(x =>
 {
     x.RequireHttpsMetadata = false;
     x.SaveToken = true;
+    x.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateLifetime = true,
+        RequireExpirationTime = true,
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = builder.Configuration["JWT:ValidIssuer"],
+        ValidAudience = builder.Configuration["JWT:ValidAudience"],
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Environment.GetEnvironmentVariable("JWT_KEY")!)),
+    };
 });
 
-//Authorization
-//builder.Services.AddAuthorization(x =>
-//{
-//    x.AddPolicy(Roles.ADMIN, policy => policy.RequireRole(Roles.ADMIN));
-//    x.AddPolicy(Roles.BACKOFFICE, policy => policy.RequireRole(Roles.BACKOFFICE));
-//    x.AddPolicy(Roles.FRONTOFFICE, policy => policy.RequireRole(Roles.FRONTOFFICE));
-//});
+builder.Services.AddAuthorization(x =>
+{
+    x.AddPolicy(Roles.ADMIN, policy => policy.RequireRole(Roles.ADMIN));
+    x.AddPolicy(Roles.BACKOFFICE, policy => policy.RequireRole(Roles.BACKOFFICE));
+    x.AddPolicy(Roles.FRONTOFFICE, policy => policy.RequireRole(Roles.FRONTOFFICE));
+});
 
 builder.Services.AddIdentity<Persona, Role>(
     options =>

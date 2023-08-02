@@ -1,5 +1,9 @@
 ﻿using System;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.IdentityModel.Tokens;
 using ProcessRUsAssessment.Identity;
 using ProcessRUsAssessment.Shared.Requests;
 using ProcessRUsAssessment.Shared.Responses;
@@ -47,10 +51,35 @@ namespace ProcessRUsAssessment.Services
                 return response;
             }
 
-            //(response.Token) = await _tokenService.GetTokenAsync(new PersonaResponse() { UserName = user.UserName, Email = user.Email, FirstName = user.FirstName, Id = user.Id, LastName = user.LastName, PhoneNumber = user.PhoneNumber, Roles = userRoles, Tin = user.Tin, IsActive = user.IsActive }, request.RememberMe);
+            var userRoles = await _userManager.GetRolesAsync(user);
+            var authClaims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, user.UserName),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+            };
+
+            foreach (var userRole in userRoles)
+            {
+                authClaims.Add(new Claim(ClaimTypes.Role, userRole));
+            }
+
+            var token = GetToken(authClaims);
+            response.Token = new JwtSecurityTokenHandler().WriteToken(token);
 
             return response;
+        }
 
+
+        private JwtSecurityToken GetToken(List<Claim> authClaims)
+        {
+            var key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Environment.GetEnvironmentVariable("JWT_KEY")!));
+            var token = new JwtSecurityToken(
+                expires: DateTime.Now.AddHours(1),
+                claims: authClaims,
+                signingCredentials: new SigningCredentials(key, SecurityAlgorithms.HmacSha256)
+                );
+
+            return token;
         }
     }
 }
