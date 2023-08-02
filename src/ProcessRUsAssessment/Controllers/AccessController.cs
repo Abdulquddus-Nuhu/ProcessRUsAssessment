@@ -32,13 +32,13 @@ namespace ProcessRUsAssessment.Controllers
         Tags = new[] { "AccessEndpoints" })
         ]   
         [Produces(MediaTypeNames.Application.Json)]
-        [ProducesResponseType(typeof(IEnumerable<FruitResponse>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(string[]), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(BaseResponse), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(BaseResponse), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(BaseResponse), StatusCodes.Status406NotAcceptable)]
         [ProducesResponseType(typeof(BaseResponse), StatusCodes.Status500InternalServerError)]
         [HttpGet(Name = "GetFruits")]
-        public async Task<IEnumerable<FruitResponse>> GetFruits()
+        public async Task<string[]> GetFruits()
         {
             return await _fruitsService.GetRandomFruitsAsync();
         }

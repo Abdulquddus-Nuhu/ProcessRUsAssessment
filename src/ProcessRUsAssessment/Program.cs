@@ -61,11 +61,9 @@ builder.Services.AddAuthentication(options =>
     {
         ValidateLifetime = true,
         RequireExpirationTime = true,
-        ValidateIssuer = true,
-        ValidateAudience = true,
+        ValidateIssuer = false,
+        ValidateAudience = false,
         ValidateIssuerSigningKey = true,
-        ValidIssuer = builder.Configuration["JWT:ValidIssuer"],
-        ValidAudience = builder.Configuration["JWT:ValidAudience"],
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Environment.GetEnvironmentVariable("JWT_KEY")!)),
     };
 });
