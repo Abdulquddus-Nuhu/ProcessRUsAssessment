@@ -6,10 +6,10 @@ using ProcessRUsAssessment.Shared.Responses;
 
 namespace ProcessRUsAssessment.Services
 {
-    public class FruitsRepository
+    public class FruitsService
     {
         private readonly AppDbContext _dbContext;
-        public FruitsRepository(AppDbContext dbContext)
+        public FruitsService(AppDbContext dbContext)
         {
             _dbContext = dbContext;
         }
@@ -19,6 +19,7 @@ namespace ProcessRUsAssessment.Services
             var fruits = await _dbContext.Fruits.ToListAsync();
 
             Random random = new Random();
+
             var randomFruits = fruits.OrderBy(x => random.Next())
                 .Take(5)
                 .Select(x => new FruitResponse { Name = x.Name})

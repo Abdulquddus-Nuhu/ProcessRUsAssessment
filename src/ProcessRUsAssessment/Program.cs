@@ -6,7 +6,6 @@ using ProcessRUsAssessment;
 using ProcessRUsAssessment.Data;
 using ProcessRUsAssessment.Identity;
 using ProcessRUsAssessment.Services;
-using static ProcessRUsAssessment.Constants.StringConstants;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
@@ -15,12 +14,6 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseNpgsql(Environment.GetEnvironmentVariable("DB_CONNECTION"));
-});
-
-builder.Services.AddHttpsRedirection(options =>
-{
-    options.RedirectStatusCode = StatusCodes.Status307TemporaryRedirect;
-    options.HttpsPort = 7139;
 });
 
 builder.Services.AddControllers();
@@ -72,17 +65,16 @@ builder.Services.AddAuthentication(options =>
 builder.Services.AddIdentity<Persona, Role>(
     options =>
     {
-        options.Password.RequireDigit = true;
         options.Password.RequireLowercase = true;
         options.Password.RequireNonAlphanumeric = true;
         options.Password.RequireUppercase = true;
         options.Password.RequiredLength = 8;
-        options.User.RequireUniqueEmail = true;
+        options.Password.RequireDigit = false;
     })
     .AddEntityFrameworkStores<AppDbContext>()
     .AddDefaultTokenProviders();
 
-builder.Services.AddTransient<FruitsRepository>();
+builder.Services.AddTransient<FruitsService>();
 builder.Services.AddTransient<AuthService>();
 
 //Seed databse

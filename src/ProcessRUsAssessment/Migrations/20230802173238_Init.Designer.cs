@@ -12,7 +12,7 @@ using ProcessRUsAssessment.Data;
 namespace ProcessRUsAssessment.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230801225938_Init")]
+    [Migration("20230802173238_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -149,14 +149,6 @@ namespace ProcessRUsAssessment.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("boolean");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("text");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("boolean");
