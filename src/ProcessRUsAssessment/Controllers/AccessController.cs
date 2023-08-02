@@ -16,22 +16,26 @@ namespace ProcessRUsAssessment.Controllers
     [Route("api/[controller]")]
     public class AccessController : Controller
     {
-        private readonly FruitsRepository _fruitsRepository;
+        private readonly FruitsService _fruitsRepository;
 
-        public AccessController(FruitsRepository fruitsRepository)
+        public AccessController(FruitsService fruitsRepository)
         {
             _fruitsRepository = fruitsRepository;
         }
 
-        //[Authorize(Roles = Roles.ADMIN + ", " + Roles.BACKOFFICE)]
+        [Authorize(Roles = Roles.ADMIN + ", " + Roles.BACKOFFICE)]
         [SwaggerOperation(
-        Summary = "Get Five Random Fruits Endpoint",
+        Summary = "Get five random fruits endpoint",
         Description = "This endpoint returns 5 random fruits. It requires Admin or BackOffice privilege",
         OperationId = "fruit.get",
         Tags = new[] { "AccessEndpoints" })
         ]   
         [Produces(MediaTypeNames.Application.Json)]
         [ProducesResponseType(typeof(IEnumerable<FruitResponse>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(BaseResponse), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(BaseResponse), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(BaseResponse), StatusCodes.Status406NotAcceptable)]
+        [ProducesResponseType(typeof(BaseResponse), StatusCodes.Status500InternalServerError)]
         [HttpGet(Name = "GetFruits")]
         public async Task<IEnumerable<FruitResponse>> GetFruits()
         {

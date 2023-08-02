@@ -25,27 +25,6 @@ namespace ProcessRUsAssessment.Controllers
         }
 
         [SwaggerOperation(
-        Summary = "Register a new user endpoint",
-        Description = "This endpoint creates a new user account. For role, FrontOffice = 0, BackOffice = 1, Admin = 2.",
-        OperationId = "persona.create",
-        Tags = new[] { "AuthEndpoints" })
-         ]
-        [Produces(MediaTypeNames.Application.Json)]
-        [ProducesResponseType(typeof(BaseResponse), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [HttpPost("Register")]
-        public async Task<ActionResult<BaseResponse>> CreatePersonaAsync([FromBody] PersonaRequest request)
-        {
-            var response = await _authService.CreatePersonaAsync(request);
-            if (!response.Status)
-            {
-                return BadRequest(response);
-            }
-            return Ok(response);
-        }
-
-        [SwaggerOperation(
         Summary = "Authenticates a user and generate JWT Token endpoint",
         Description = "Authenticates a user and generate JWT Token",
         OperationId = "auth.login",
