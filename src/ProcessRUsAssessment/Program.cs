@@ -83,6 +83,7 @@ builder.Services.AddIdentity<Persona, Role>(
     .AddDefaultTokenProviders();
 
 builder.Services.AddTransient<FruitsRepository>();
+builder.Services.AddTransient<AuthService>();
 
 //Seed databse
 builder.Services.AddHostedService<DBSeed>();

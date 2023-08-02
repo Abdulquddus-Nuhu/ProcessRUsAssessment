@@ -36,7 +36,6 @@
     <None Remove="Shared\" />
     <None Remove="Shared\Enums\" />
     <None Remove="Shared\Requests\" />
-    <None Remove="Shared\Responses\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Identity\" />
@@ -47,6 +46,5 @@
     <Folder Include="Shared\" />
     <Folder Include="Shared\Enums\" />
     <Folder Include="Shared\Requests\" />
-    <Folder Include="Shared\Responses\" />
   </ItemGroup>
 </Project>
