@@ -31,7 +31,7 @@ namespace ProcessRUsAssessment
             {
                 var frontOffice = new Persona()
                 {
-                    UserName = "Admin",
+                    UserName = "FrontOffice",
                     EmailConfirmed = true
                 };
                 var result = await userManager.CreateAsync(frontOffice, "FrontOfficeP@ssword");

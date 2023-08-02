@@ -14,16 +14,21 @@ namespace ProcessRUsAssessment.Services
             _dbContext = dbContext;
         }
 
-        public async Task<IEnumerable<FruitResponse>> GetRandomFruitsAsync()
+        public async Task<string[]> GetRandomFruitsAsync()
         {
-            var fruits = await _dbContext.Fruits.ToListAsync();
-
             Random random = new Random();
-
-            var randomFruits = fruits.OrderBy(x => random.Next())
+            var fruitsInDb = await _dbContext.Fruits.ToListAsync();
+            var fruits = fruitsInDb.OrderBy(x => random.Next())
                 .Take(5)
-                .Select(x => new FruitResponse { Name = x.Name})
                 .ToList();
+
+            var randomFruitList = new List<string>();
+            foreach (var fruit in fruits)
+            {
+                randomFruitList.Add(fruit.Name);
+            }
+
+            string[] randomFruits = randomFruitList.ToArray();
 
             return randomFruits;
         }

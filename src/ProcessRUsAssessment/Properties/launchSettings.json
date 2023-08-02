@@ -27,7 +27,8 @@
       "applicationUrl": "https://localhost:7139;http://localhost:5048",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "DB_CONNECTION": "Host=localhost;Database=ProcessRUsAssessment_db;password=master;username=postgres;"
+        "DB_CONNECTION": "Host=localhost;Database=ProcessRUsAssessment_db;password=master;username=postgres;",
+        "JWT_KEY": "PRkDSJKSJSSL_JWTKEY$$2023_&352525"
       },
       "dotnetRunMessages": true
     },
