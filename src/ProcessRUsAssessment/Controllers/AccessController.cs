@@ -24,14 +24,14 @@ namespace ProcessRUsAssessment.Controllers
             _fruitsService = fruitsService;
         }
 
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = Roles.ADMIN + ", " + Roles.BACKOFFICE)]
+        [Authorize(Roles = Roles.ADMIN + ", " + Roles.BACKOFFICE)]
         [SwaggerOperation(
         Summary = "Get five random fruits endpoint",
         Description = "This endpoint returns 5 random fruits. It requires Admin or BackOffice privilege",
         OperationId = "fruits.get",
         Tags = new[] { "AccessEndpoints" })
         ]   
-        [Produces(MediaTypeNames.Application.Json)]
+        [Produces(MediaTypeNames.Application.Xml, MediaTypeNames.Application.Json)]
         [ProducesResponseType(typeof(string[]), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(BaseResponse), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(BaseResponse), StatusCodes.Status404NotFound)]
