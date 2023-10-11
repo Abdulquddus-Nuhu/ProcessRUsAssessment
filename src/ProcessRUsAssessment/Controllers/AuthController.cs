@@ -32,7 +32,7 @@ namespace ProcessRUsAssessment.Controllers
         OperationId = "auth.login",
         Tags = new[] { "AuthEndpoints" })
         ]
-        [Produces(MediaTypeNames.Application.Json)]
+        [Produces(MediaTypeNames.Application.Json, MediaTypeNames.Application.Xml)]
         [ProducesResponseType(typeof(LoginResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(BaseResponse), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(BaseResponse), StatusCodes.Status404NotFound)]
